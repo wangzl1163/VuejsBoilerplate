@@ -1,0 +1,69 @@
+.clearfix() {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+.scrollBar() {
+  &::-webkit-scrollbar-track-piece {
+    background: #d3dce6;
+  }
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #99a9bf;
+    border-radius: 20px;
+  }
+}
+
+.relative() {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.pct(@pct) {
+  width: @pct;
+  position: relative;
+  margin: 0 auto;
+}
+
+
+.triangle-fn(@width, @height, @color, @color-border, @transparent1,@transparent2){
+    @width: @width/2;
+    @color-border-style: @height solid @color;
+    @transparent-border-style: @width solid transparent;
+    height: 0;
+    width: 0;
+
+    @{color-border}: @color-border-style;
+    @{transparent1}: @transparent-border-style;
+    @{transparent2}: @transparent-border-style;
+}
+
+.triangle-up (@width, @height, @color, @direction) when(@direction=up){
+  .triangle-fn(@width, @height, @color, border-bottom, border-left, border-right);
+}
+
+.triangle-right(@width, @height, @color, @direction) when(@direction=right){
+  .triangle-fn(@width, @height, @color, border-left, border-top, border-bottom);
+}
+
+.triangle-down(@width, @height, @color, @direction) when(@direction=down){
+  .triangle-fn(@width, @height, @color, border-top, border-left, border-right);
+}
+
+.triangle-left(@width, @height, @color, @direction) when(@direction=left){
+  .triangle-fn(@width, @height, @color, border-right, border-top, border-bottom);
+}
+
+.triangle(@width, @height, @color, @direction){
+  .triangle-up(@width, @height, @color, @direction);
+  .triangle-right(@width, @height, @color, @direction);
+  .triangle-down(@width, @height, @color, @direction);
+}

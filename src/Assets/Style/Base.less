@@ -1,0 +1,51 @@
+@import './Mixin.less';
+@import './Variables.less';
+@import './Transition.less';
+@import './ElementUI.less';
+@import './Sidebar.less';
+@import './Btn.less';
+
+html,
+body {
+   height: 100%;
+   margin: 0;
+   -moz-osx-font-smoothing: grayscale;
+   -webkit-font-smoothing: antialiased;
+   text-rendering: optimizeLegibility;
+   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+
+html {
+   box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+.clearfix {
+   &:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+   }
+}
+
+.no-padding {
+   padding: 0px !important;
+}
+
+
