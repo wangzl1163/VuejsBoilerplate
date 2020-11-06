@@ -132,7 +132,7 @@ export default {
          })
       },
       refreshSelectedTag (view) {
-         this.$store.dispatch('tagsView/delCachedView', view).then(() => {
+         this.$store.dispatch('delCachedView', view).then(() => {
             const { fullPath } = view
             this.$nextTick(() => {
                this.$router.replace({
@@ -142,7 +142,7 @@ export default {
          })
       },
       closeSelectedTag (view) {
-         this.$store.dispatch('tagsView/delView', view).then(({ visitedViews }) => {
+         this.$store.dispatch('delView', view).then(({ visitedViews }) => {
             if (this.isActive(view)) {
                this.toLastView(visitedViews, view)
             }
@@ -155,7 +155,7 @@ export default {
          })
       },
       closeAllTags (view) {
-         this.$store.dispatch('tagsView/delAllViews').then(({ visitedViews }) => {
+         this.$store.dispatch('delAllViews').then(({ visitedViews }) => {
             if (this.affixTags.some(tag => tag.path === view.path)) {
                return
             }
