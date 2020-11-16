@@ -134,8 +134,7 @@ class Request {
                })
            })
         }
-      }
-      case 'PUT': {
+       case 'PUT': {
             return new Promise((resolve,reject)=>{
                http.put(this.url, this.data, this.options).then(response => {
                   return resolve(response)
@@ -154,7 +153,8 @@ class Request {
                 return reject(err)
              })
           })
-       }
+        }
+      }
 
       function log (err) {
          console.group('%c错误信息：', 'color:red;')
