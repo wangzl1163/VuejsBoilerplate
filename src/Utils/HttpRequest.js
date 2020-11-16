@@ -132,9 +132,29 @@ class Request {
                   log(err)
                   return reject(err)
                })
-         })
+           })
+        }
       }
-      }
+      case 'PUT': {
+            return new Promise((resolve,reject)=>{
+               http.put(this.url, this.data, this.options).then(response => {
+                  return resolve(response)
+               }).catch(err => {
+                  log(err)
+                  return reject(err)
+               })
+            })
+         }
+       case 'DELETE': {
+          return new Promise((resolve,reject)=>{
+             http.delete(this.url, this.options).then(response => {
+                return resolve(response)
+             }).catch(err => {
+                log(err)
+                return reject(err)
+             })
+          })
+       }
 
       function log (err) {
          console.group('%c错误信息：', 'color:red;')
@@ -158,6 +178,14 @@ class Request {
 
    $post (url, data = {}, options = {}) {
       return this.$ajax(url, data, { type: 'POST', options: options })
+   }
+  
+   $put(url, data = {}, options = {}) {
+      return this.$ajax(url, data, { type: 'PUT', options: options })
+   }
+
+   $delete(url, options = {}) {
+      return this.$ajax(url, {}, { type: 'DELETE', options: options })
    }
 }
 
