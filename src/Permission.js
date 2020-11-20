@@ -47,5 +47,17 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach((to, from, next) => {
+  to.matched.forEach(record => {
+      if (record.path === to.path) {
+         if (Object.keys(to.query).length > 0) {
+            record.query = to.query
+         }
+
+         if (Object.keys(to.params).length > 0) {
+            record.params = to.params
+         }
+      }
+   })
+   
    loadingBar.finish()
 })
