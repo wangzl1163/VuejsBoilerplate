@@ -50,9 +50,14 @@ export default {
          return name.trim() === '首页'
       },
       pathCompile (path) {
-         const { params } = this.$route
+         const { query, params, path } = item
+
+         if(query) {
+            return { path, query: query }
+         }
+
          var toPath = pathToRegexp.compile(path)
-         return toPath(params)
+         return toPath(params || {})
       },
       handleLink (item) {
          const { redirect, path } = item
