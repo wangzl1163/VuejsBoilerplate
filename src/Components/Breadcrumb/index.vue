@@ -10,8 +10,6 @@
 </template>
 
 <script>
-import * as pathToRegexp from 'path-to-regexp'
-
 export default {
    data () {
       return {
@@ -20,7 +18,7 @@ export default {
    },
    watch: {
       $route (route) {
-      // if you go to the redirect page, do not update the breadcrumbs
+         // if you go to the redirect page, do not update the breadcrumbs
          if (route.path.startsWith('/redirect/')) {
             return
          }
@@ -32,7 +30,7 @@ export default {
    },
    methods: {
       getBreadcrumb () {
-      // only show routes with meta.title
+         // only show routes with meta.title
          let matched = this.$route.matched.filter(item => item.meta && item.meta.title)
          const first = matched[0]
 
@@ -49,23 +47,32 @@ export default {
          }
          return name.trim() === '首页'
       },
-      pathCompile (path) {
-         const { query, params, path } = item
-
-         if(query) {
-            return { path, query: query }
-         }
-
-         var toPath = pathToRegexp.compile(path)
-         return toPath(params || {})
-      },
       handleLink (item) {
-         const { redirect, path } = item
+         const { redirect, path, name, query, params } = item
+         
          if (redirect) {
-            this.$router.push(redirect)
-            return
+            if (redirect === this.$route.path) {
+               return
+            }
+
+            return this.$router.push(redirect)
          }
-         this.$router.push(this.pathCompile(path))
+
+         if (query) {
+            return this.$router.push({
+               path,
+               query
+            })
+         }
+
+         if (params) {
+            return this.$router.push({
+               name,
+               params
+            })
+         }
+         
+         this.$router.push(path)
       }
    }
 }
