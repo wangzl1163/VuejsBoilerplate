@@ -49,7 +49,7 @@ export default {
       },
       handleLink (item) {
          const { redirect, path, name, query, params } = item
-         
+
          if (redirect) {
             if (redirect === this.$route.path) {
                return
@@ -71,7 +71,7 @@ export default {
                params
             })
          }
-         
+
          this.$router.push(path)
       }
    }

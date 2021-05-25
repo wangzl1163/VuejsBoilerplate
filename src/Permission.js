@@ -47,7 +47,7 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach((to, from, next) => {
-  to.matched.forEach(record => {
+   to.matched.forEach(record => {
       if (record.path === to.path) {
          if (Object.keys(to.query).length > 0) {
             record.query = to.query
@@ -58,6 +58,6 @@ router.afterEach((to, from, next) => {
          }
       }
    })
-   
+
    loadingBar.finish()
 })
