@@ -7,7 +7,9 @@ module.exports = {
    },
 
    parserOptions: {
-      parser: 'babel-eslint'
+      parser: 'babel-eslint',
+      sourceType: 'module',
+      ecmaVersion: 2020, // 配置parser支持到es2020语法
    },
 
    rules: {
