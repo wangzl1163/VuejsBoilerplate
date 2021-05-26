@@ -2,7 +2,8 @@ module.exports = {
    root: true,
 
    env: {
-      node: true
+      node: true,
+      es6: true // 使eslint支持es6语法
    },
 
    parserOptions: {
