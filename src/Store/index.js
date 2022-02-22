@@ -12,14 +12,18 @@ import { settings } from './Modules/Settings'
 
 Vue.use(Vuex)
 
+const isDevelopment = process.env.NODE_ENV !== 'production'
+const enc = isDevelopment ? (val) => val : encryption
+const dec = isDevelopment ? (val) => val : decryption
+
 export default new Vuex.Store({
-   strict: process.env.NODE_ENV !== 'production',
+   strict: isDevelopment,
    plugins: [
       createPersistedState({
          key: 'VueBP',
          storage: {
-            setItem: (key, value) => window.sessionStorage.setItem(key, encryption(value)),
-            getItem: (key) => decryption(window.sessionStorage.getItem(key)),
+            setItem: (key, value) => window.sessionStorage.setItem(key, enc(value)),
+            getItem: (key) => dec(window.sessionStorage.getItem(key)),
             removeItem: (key) => window.sessionStorage.removeItem(key)
          }
       })
